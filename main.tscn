@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu4kg5ainok6m"]
+
+[ext_resource type="Script" path="res://src/main.gd" id="1_88swe"]
+[ext_resource type="PackedScene" uid="uid://b7cbe4ihv8dlf" path="res://alarmButton.tscn" id="2_ok55k"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_88swe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Alarmes B.V.Matosinhos-Leça"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AudioSources" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="AlarmButtons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" parent="VBoxContainer/AlarmButtons" instance=ExtResource("2_ok55k")]
+layout_mode = 2
+
+[node name="Button6" parent="VBoxContainer/AlarmButtons" instance=ExtResource("2_ok55k")]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer/AlarmButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ambulância Urgente"
+
+[node name="Button3" type="Button" parent="VBoxContainer/AlarmButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Acidente"
+
+[node name="Button4" type="Button" parent="VBoxContainer/AlarmButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fogo Florestal"
+
+[node name="Button5" type="Button" parent="VBoxContainer/AlarmButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fogo Urbano"
