@@ -1,6 +1,7 @@
 extends Control
 @onready var audio_sources: OptionButton = $VBoxContainer/HBoxContainer2/AudioSources
 @onready var alarm_buttons: HBoxContainer = $VBoxContainer/AlarmButtons
+@onready var debug: Label = %Debug
 
 
 const ALARM_BUTTON = preload("res://alarmButton.tscn")
@@ -10,7 +11,8 @@ const default_btns = '''[	{ "label": "Serviços Diversos", "color": "(0, 0.5, 0,
 	{ "label": "Ambulância Urgente", "color": "(1, 1, 0, 1)", "audioPath": "res://assets/audio2.wav" },
 	{ "label": "Acidente", "color": "(1, 0.647, 0, 1)", "audioPath": "res://assets/audio3.wav" },
 	{ "label": "Fogo Florestal", "color": "(1, 0, 0, 1)", "audioPath": "res://assets/audio4.wav" },
-	{ "label": "Fogo Urbano", "color": "(0.5, 0, 0, 1)", "audioPath": "res://assets/audio5.wav" }
+	{ "label": "Fogo Urbano", "color": "(0.5, 0, 0, 1)", "audioPath": "res://assets/audio5.wav" },
+	{ "label": "qwe", "color": "(1, 1, 0, 1)", "audioPath": "res://assets/audio2.wav" }
 ]'''
 
 
@@ -30,7 +32,6 @@ func save_config():
 				"color": str(child.color),
 				"audioPath": child.audioPath
 			})
-	print(data)
 	file.store_string(str(data))
 	file = null
 	
@@ -39,6 +40,7 @@ func load_config():
 	if not FileAccess.file_exists(path):
 		file = FileAccess.open(path,FileAccess.WRITE)
 		file.store_string(default_btns)
+		debug.text = "no buttons file: creating"
 		file.close()
 	
 	for child in alarm_buttons.get_children():
@@ -48,13 +50,12 @@ func load_config():
 	var json_string = file.get_as_text()
 	var json = JSON.new()
 	var error = json.parse(json_string)
-	print(error, json_string)
 	if error == OK:
 		var data = json.get_data()
-		print(data)
 		for item in data:
 			var alarm_button_instance = ALARM_BUTTON.instantiate()
 			alarm_button_instance.text = item.label
+			alarm_button_instance.parent = self
 
 			var color_components = item.color.substr(1, item.color.length() - 2).split(",")
 			alarm_button_instance.color = Color(
@@ -77,4 +78,3 @@ func list_audio_output_sources():
 func _on_audio_output_selected(index: int):
 	var selected_device = AudioServer.get_output_device_list()[index]
 	AudioServer.output_device = selected_device
-	print("Selected audio output: ", selected_device)

@@ -46,22 +46,6 @@ layout_mode = 2
 [node name="Button6" parent="VBoxContainer/AlarmButtons" instance=ExtResource("2_ok55k")]
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="VBoxContainer/AlarmButtons"]
+[node name="Debug" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Ambulância Urgente"
-
-[node name="Button3" type="Button" parent="VBoxContainer/AlarmButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Acidente"
-
-[node name="Button4" type="Button" parent="VBoxContainer/AlarmButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fogo Florestal"
-
-[node name="Button5" type="Button" parent="VBoxContainer/AlarmButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fogo Urbano"
