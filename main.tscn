@@ -28,7 +28,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Alarmes B.V.Matosinhos-Leça"
+text = "🚨 Gestão de alarmes"
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2

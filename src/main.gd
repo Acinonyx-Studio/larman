@@ -7,12 +7,11 @@ extends Control
 const ALARM_BUTTON = preload("res://alarmButton.tscn")
 var path = "res://config.cfg"
 
-const default_btns = '''[	{ "label": "Serviços Diversos", "color": "(0, 0.5, 0, 1)", "audioPath": "res://assets/audio1.wav" }, 
-	{ "label": "Ambulância Urgente", "color": "(1, 1, 0, 1)", "audioPath": "res://assets/audio2.wav" },
-	{ "label": "Acidente", "color": "(1, 0.647, 0, 1)", "audioPath": "res://assets/audio3.wav" },
-	{ "label": "Fogo Florestal", "color": "(1, 0, 0, 1)", "audioPath": "res://assets/audio4.wav" },
-	{ "label": "Fogo Urbano", "color": "(0.5, 0, 0, 1)", "audioPath": "res://assets/audio5.wav" },
-	{ "label": "qwe", "color": "(1, 1, 0, 1)", "audioPath": "res://assets/audio2.wav" }
+const default_btns = '''[	{ "label": "Serviços Diversos", "color": "(0, 0.5, 0, 1)", "audioPath": "res://assets/audio1.wav", "announce": "res://assets/announce.wav" }, 
+	{ "label": "Ambulância Urgente", "color": "(1, 1, 0, 1)", "audioPath": "res://assets/audio2.wav", "announce": "res://assets/announce.wav" },
+	{ "label": "Acidente", "color": "(1, 0.647, 0, 1)", "audioPath": "res://assets/audio3.wav", "announce": "res://assets/announce.wav" },
+	{ "label": "Fogo Florestal", "color": "(1, 0, 0, 1)", "audioPath": "res://assets/audio4.wav", "announce": "res://assets/announce.wav" },
+	{ "label": "Fogo Urbano", "color": "(0.5, 0, 0, 1)", "audioPath": "res://assets/audio5.wav", "announce": "res://assets/announce.wav" },
 ]'''
 
 
@@ -66,6 +65,7 @@ func load_config():
 			)
 			
 			alarm_button_instance.audioPath = item.audioPath
+			alarm_button_instance.announce = item.announce
 			alarm_buttons.add_child(alarm_button_instance)
 	
 			
