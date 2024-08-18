@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu4kg5ainok6m"]
+[gd_scene load_steps=5 format=3 uid="uid://cu4kg5ainok6m"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_88swe"]
 [ext_resource type="PackedScene" uid="uid://b7cbe4ihv8dlf" path="res://alarmButton.tscn" id="2_ok55k"]
+[ext_resource type="Texture2D" uid="uid://eefax6y5iufg" path="res://icon.png" id="2_y5p0o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_162qc"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,40 +15,52 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_88swe")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -33.0
-offset_bottom = 33.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "🚨 Gestão de alarmes"
 
-[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_162qc")
+disabled = true
+text = "Gestão de Alarmes"
+icon = ExtResource("2_y5p0o")
+alignment = 0
 
-[node name="AudioSources" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-
-[node name="AlarmButtons" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Button" parent="VBoxContainer/AlarmButtons" instance=ExtResource("2_ok55k")]
-layout_mode = 2
-
-[node name="Button6" parent="VBoxContainer/AlarmButtons" instance=ExtResource("2_ok55k")]
-layout_mode = 2
-
-[node name="Debug" type="Label" parent="VBoxContainer"]
+[node name="AudioSources" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="AlarmButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Button" parent="MarginContainer/VBoxContainer/AlarmButtons" instance=ExtResource("2_ok55k")]
+layout_mode = 2
+
+[node name="Button6" parent="MarginContainer/VBoxContainer/AlarmButtons" instance=ExtResource("2_ok55k")]
+layout_mode = 2
+
+[node name="Debug" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_button_up"]

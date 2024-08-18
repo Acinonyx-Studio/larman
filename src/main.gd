@@ -1,6 +1,6 @@
 extends Control
-@onready var audio_sources: OptionButton = $VBoxContainer/HBoxContainer2/AudioSources
-@onready var alarm_buttons: HBoxContainer = $VBoxContainer/AlarmButtons
+@onready var audio_sources: OptionButton = %AudioSources
+@onready var alarm_buttons: HBoxContainer = %AlarmButtons
 @onready var debug: Label = %Debug
 
 
@@ -53,7 +53,7 @@ func load_config():
 		var data = json.get_data()
 		for item in data:
 			var alarm_button_instance = ALARM_BUTTON.instantiate()
-			alarm_button_instance.text = item.label
+			alarm_button_instance.label = item.label
 			alarm_button_instance.parent = self
 
 			var color_components = item.color.substr(1, item.color.length() - 2).split(",")
@@ -78,3 +78,7 @@ func list_audio_output_sources():
 func _on_audio_output_selected(index: int):
 	var selected_device = AudioServer.get_output_device_list()[index]
 	AudioServer.output_device = selected_device
+
+
+func _on_button_button_up() -> void:
+	pass # Replace with function body.
